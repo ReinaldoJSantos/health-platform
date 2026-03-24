@@ -3,7 +3,7 @@ from app.core.database import Base
 
 
 class Patient(Base):
-    __table__name__ = "patients"
+    __tablename__ = "patients"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
