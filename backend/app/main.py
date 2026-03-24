@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+from app.core.database import engine, Base
 
-app = FastAPI()
+from app.core.database import patinent
+
+app = FastAPI(title="Healt Plataform API")
+
+Base.metadata.create_all(bind=engine)
 
 
 @app.get("/")
