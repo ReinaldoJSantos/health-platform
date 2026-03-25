@@ -16,7 +16,3 @@ Base.metadata.create_all(bind=engine)
 def startup():
     Base.metadata.create_all(bind=engine)
 
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
