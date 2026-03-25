@@ -1,8 +1,12 @@
 from sqlalchemy.orm import Session
 from app.models.patient import Patient
 from app.schemas.patient import PatientCreate
-
+from app.core.validators import validate_cpf
 def create_patient(db: Session, patient: PatientCreate):
+
+    if not validate_cpf(patient.cpf):
+        raise ValueError("CPF inválido")
+
     # validade cpf duplicado
     existing = db.query(Patient).filter(Patient.cpf == patient.cpf).first()
     if existing:
