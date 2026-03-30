@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import Session
+from sqlalchemy.orm import Session
 
 from app.core.database import SessionLocal
 from app.schemas.professional import ProfessionalCreate

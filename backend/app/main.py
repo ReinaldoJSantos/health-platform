@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from app.core.database import engine, Base
 
-from app.models import patient, professional
+from app.models import patient, professional, appointment
 from app.api import patient
 from app.api import professional
+
 
 
 
