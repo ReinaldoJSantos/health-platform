@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-def classProfessionalCreate(BaseModel):
+class ProfessionalCreate(BaseModel):
     name: str
     specialty: str
     license_number: str
