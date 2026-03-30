@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from app.core.database import engine, Base
 
-from app.models import patient
+from app.models import patient, professional
 from app.api import patient
+
 
 
 app = FastAPI(title="Healt Plataform API")
