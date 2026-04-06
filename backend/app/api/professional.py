@@ -15,16 +15,19 @@ def get_db():
         db.close()
 
 
-@router.post("/")
+@router.post("/professionals")
 def create_professional(
     professional: ProfessionalCreate,
     db: Session = Depends(get_db)):
 
     try:
-        return professional_service.ProfessionalCreate(db, professional)
+        return professional_service.create_professional(
+            db,
+            professional
+            )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.get("/")
-def list_professionals(db: Session = Depends(get_db)):
+def get_professionals(db: Session = Depends(get_db)):
     return professional_service.list_professional(db)

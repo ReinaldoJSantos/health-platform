@@ -3,7 +3,8 @@ from app.models.professional import Professional
 from app.schemas.professional import ProfessionalCreate
 
 
-def professionalCreate(db: Session, professional: ProfessionalCreate):
+def create_professional(
+    db: Session, professional: ProfessionalCreate):
     existing = db.query(Professional).filter(Professional.license_number == professional.license_number).first()
 
     if existing:
