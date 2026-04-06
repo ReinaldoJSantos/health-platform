@@ -3,6 +3,7 @@ from app.models.appointment import Appointments
 from app.models.professional import Professional
 from app.models.patient import Patient
 from app.schemas.appointments import AppointmentCreate
+from app.core.rabbitmq import publish_event
 
 
 def create_appointment(db: Session, data: AppointmentCreate):
@@ -18,6 +19,17 @@ def create_appointment(db: Session, data: AppointmentCreate):
     db.add(appointment)
     db.commit()
     db.refresh(appointment)
+
+    # publicacao do evento
+    publish_event(
+        queue="appointment_created",
+        message={
+            "event": "appointment_created",
+            "appointment_id": appointment.id,
+            "patient_id": appointment.patient_id,
+            "professional_id": appointment.professional_id
+        }
+    )
 
     return appointment
 
